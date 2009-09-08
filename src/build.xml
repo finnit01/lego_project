@@ -1,0 +1,32 @@
+<project name="lego_project" default="compile">
+    <description>
+        Build file for lego_project
+    </description>
+
+    <!-- set properties for this build -->
+    <property environment="env"/>
+    <property file="build.properties"/>
+
+    <!-- deletes class files -->
+    <target name="clean" description="clean up all generated files">
+        <delete>
+            <fileset dir="."> 
+                <include name="**/*.class"/>
+            </fileset>
+        </delete>
+    </target>
+
+    <target name="compile" depends="clean" description="Compile srouce">
+        <javac srcdir="." destdir=".">
+            <bootclasspath>
+                <pathelement location="${nxj.classes.jar}" />
+            </bootclasspath>
+        </javac>
+    </target>
+
+</project>
+
+
+            
+
+
