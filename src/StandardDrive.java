@@ -8,7 +8,7 @@ import lejos.navigation.TachoPilot;
  * forward using the left and right motors. This is the lowest priority
  * behaviour.
  *
- * @author Timothy Black, Malcolm King
+ * @author Timothy Black, Malcolm King, Trevor Finnie
  * @version September 2009 (0.4)
  */
 public class StandardDrive implements Behavior {
@@ -38,17 +38,8 @@ public class StandardDrive implements Behavior {
      * Drive forward and use energy.
      */
     public void action() {
-        //    pilot.reset();
+        pilot.setMoveSpeed(1);
         pilot.forward();
-        while (pilot.isMoving()) {
-            try {
-                Thread.sleep(1000);
-            }
-            catch (Exception e) {}
-            //      GlobalVars.setEnergy(GlobalVars.getEnergy() - (int)pilot.getMoveSpeed());
-            //      LCD.drawInt(GlobalVars.getEnergy(),0,0);
-            //      LCD.drawString(""+pilot.getMoveSpeed(), 0, 1);
-        }
     }
 
 }
