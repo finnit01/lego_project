@@ -24,13 +24,12 @@ public class DetectColour implements Behavior {
     private boolean onColour; // are we currently over colour?
 
     public DetectColour(LightSensor light, int colourMin,
-            int colourMax, Action onColourAction, Action offColourAction, Action suppressAction ) {
+            int colourMax, Action onColourAction, Action offColourAction) {
         this.light = light;
         this.colourMin = colourMin;
         this.colourMax = colourMax;
         this.onColourAction = onColourAction;
         this.offColourAction = offColourAction;
-        this.suppressAction = suppressAction;
         onColour = seeColour(); // we might start off on colour, so
         // handle this correctly
     }
@@ -55,7 +54,8 @@ public class DetectColour implements Behavior {
      */
     public void suppress() {
         if (suppressAction!=null) {
-            suppressAction.action();
+            suppressAction.suppress();
+            suppressAction = null;
         }
     }
 
@@ -66,9 +66,11 @@ public class DetectColour implements Behavior {
         onColour = !onColour; // we either moved onto colour, or off of colour so update state appropriately
         if (onColour && onColourAction!=null) {
             onColourAction.action();
+            suppressAction = onColourAction;
         }
         else if (!onColour && offColourAction!=null) {
             offColourAction.action();
+            suppressAction = offColourAction;
         }
     }
 

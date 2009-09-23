@@ -52,15 +52,34 @@ public class NxtBehaviour {
                 yellow-20,
                 yellow+20,
                 new BeepAction(),
-                new TwoBeepsAction(), null);
+                new TwoBeepsAction());
 
         // wait for sound
         while (sound.readValue() < 80) {
             // waiting
         }
 
+        // set up EnergyLevel object to keep track of current energy level
+        // start with full energy (1.0);
+        EnergyLevel energyLevel = new EnergyLevel(1.0);
+
+        // combine the DriveForward and DrainEnergy actions so that both can
+        // run as one action
+        CombinedAction driveAndLoseEnergy = new CombinedAction(
+            // pass the pilot and energyLevel which it will
+            // monitor for changes and adjust speed accordingly
+            new DriveForwardAction(pilot, energyLevel),
+            // pass the energyLevel so it can decrease it at
+            // regular intervals
+            new DrainEnergyAction(energyLevel)
+            );
+
+        DefaultBehaviour defaultBehaviour = new DefaultBehaviour(
+            driveAndLoseEnergy
+            );
+
         // setup, start the Arbitrator
-        Behavior[] behaviours = {new StandardDrive(pilot), detectYellow};
+        Behavior[] behaviours = {defaultBehaviour, detectYellow};
         Arbitrator arbitrator = new Arbitrator(behaviours);
         arbitrator.start();
     }
