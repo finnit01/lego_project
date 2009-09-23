@@ -12,24 +12,24 @@ import lejos.nxt.LightSensor;
  * @author Timothy Black, Malcolm King
  * @version September 2009 (0.4)
  */
-public class DetectYellow implements Behavior {
+public class DetectGreen implements Behavior {
 
   TachoPilot pilot;
   LightSensor light;
   boolean flag = false;
 
-  public DetectYellow(TachoPilot pilot, LightSensor light) {
+  public DetectGreen(TachoPilot pilot, LightSensor light) {
     this.pilot = pilot;
     this.light = light;
   }
 
   private boolean withinTolerance() {
     int lightValue = light.readNormalizedValue();
-    return (lightValue > GlobalVars.yellowMin && lightValue < GlobalVars.yellowMax);
+    return (lightValue > GlobalVars.greenMin && lightValue < GlobalVars.greenMax);
   }
 
   /**
-   * Take control if yellow is detected.
+   * Take control if green is detected.
    */
   public boolean takeControl() {
     if (withinTolerance() && !flag) {
@@ -54,7 +54,7 @@ public class DetectYellow implements Behavior {
    */
   public void action() {
     lejos.nxt.LCD.clear();
-    lejos.nxt.LCD.drawString("DetectYellow",0,0);
+    lejos.nxt.LCD.drawString("DetectGreen",0,0);
     GlobalVars.greenSong();
   }
 

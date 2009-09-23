@@ -38,7 +38,7 @@ public class AvoidObstacle implements Behavior
      */
     public void suppress()
     {
-        pilot.stop();
+//        pilot.stop();
     }
 
     /**

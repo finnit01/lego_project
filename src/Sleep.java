@@ -36,6 +36,8 @@ public class Sleep implements Behavior {
    */
   public void action() {
     pilot.stop();
+    // play a song when sleeping. as this is the highest priority behaviour it will repeat.
+    GlobalVars.sleepSong();
   }
 
 }

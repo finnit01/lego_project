@@ -12,7 +12,7 @@ import lejos.nxt.SoundSensor;
  */
 public class DetectSoundWhileSleeping implements Behavior {
 
-  final int SOUND_THRESHOLD = 70;
+  final int SOUND_THRESHOLD = 60;
 
   SoundSensor sound;
 
@@ -37,7 +37,7 @@ public class DetectSoundWhileSleeping implements Behavior {
    * Increase energy level.
    */
   public void action() {
-    GlobalVars.setEnergy(2000);
+    GlobalVars.setEnergy(500);
   }
 
 }

@@ -2,6 +2,7 @@ import lejos.subsumption.Behavior;
 //import lejos.nxt.Motor;
 import lejos.navigation.TachoPilot;
 //import lejos.nxt.LCD;
+//import lejos.nxt.Sound;
 
 /**
  * Handle the standard behaviour for the NXT robot which is driving
@@ -38,7 +39,8 @@ public class StandardDrive implements Behavior {
    * Drive forward and use energy.
    */
   public void action() {
-//    pilot.reset();
+    lejos.nxt.LCD.clear();
+    lejos.nxt.LCD.drawString("StandardDrive",0,0);
     pilot.forward();
     while (pilot.isMoving()) {
       try {
@@ -46,8 +48,6 @@ public class StandardDrive implements Behavior {
       }
       catch (Exception e) {}
       GlobalVars.setEnergy(GlobalVars.getEnergy() - (int)pilot.getMoveSpeed());
-//      LCD.drawInt(GlobalVars.getEnergy(),0,0);
-//      LCD.drawString(""+pilot.getMoveSpeed(), 0, 1);
     }
   }
 
