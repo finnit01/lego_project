@@ -51,6 +51,7 @@ public class NxtBehaviour {
     LCD.drawString("Yellow paper",0,0);
     Button.waitForPress();
     GlobalVars.yellow = light.readNormalizedValue();
+    /*
     LCD.clear();
     LCD.drawString("Orange paper",0,0);
     Button.waitForPress();
@@ -63,12 +64,15 @@ public class NxtBehaviour {
     LCD.drawString("Green paper",0,0);
     Button.waitForPress();
     GlobalVars.green = light.readNormalizedValue();
+    */
 
     LCD.clear();
     LCD.drawInt(GlobalVars.yellow, 0, 0);
+    /*
     LCD.drawInt(GlobalVars.orange, 0, 1);
     LCD.drawInt(GlobalVars.blue, 0, 2);
     LCD.drawInt(GlobalVars.green, 0, 3);
+    */
 
     while (sound.readValue() < 80) {
 
@@ -81,9 +85,12 @@ public class NxtBehaviour {
     // Behavior[] behaviours = { new StandardDrive(pilot), new
     // AvoidObstacle(pilot, sonic),
     // new EnergyDetector(), new DetectSound(sound), new DetectTouch(touch) };
+    /*
     Behavior[] behaviours = { new StandardDrive(pilot), new DetectYellow(pilot, light),
         new AvoidObstacle(pilot, sonic), new Sleep(pilot),
         new DetectSoundWhileSleeping(sound) };
+        */
+    Behavior[] behaviours = { new StandardDrive(pilot), new DetectYellow(pilot, light)};
     Arbitrator behaviourSystem = new Arbitrator(behaviours);
     behaviourSystem.start();
   }

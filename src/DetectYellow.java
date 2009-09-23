@@ -14,32 +14,51 @@ import lejos.nxt.LightSensor;
  */
 public class DetectYellow implements Behavior {
 
+  private static int COLOUR_THRESHOLD = 20;
+
   TachoPilot pilot;
   lejos.nxt.LightSensor light;
+  boolean onYellow; // are we currently over yellow?
 
   public DetectYellow(TachoPilot pilot, LightSensor light) {
     this.pilot = pilot;
     this.light = light;
+    onYellow = seeYellow(); // we might start off on yellow, so
+                            // handle this correctly
   }
 
   /**
-   * Take control if yellow is detected.
+   * Take control if crossing onto or off yellow region.
    */
   public boolean takeControl() {
-    return (light.readNormalizedValue() > GlobalVars.yellow - 20 && light.readNormalizedValue() < GlobalVars.yellow + 20);
+      // Take action if either:
+      // 1. robot wasn't over yellow, but now it sees yellow; or
+      // 2. robot was over yellow, but it no longer sees yellow
+      return onYellow != seeYellow();
+  }
+
+  private boolean seeYellow() {
+      int colour = light.readNormalizedValue();
+      return colour > GlobalVars.yellow - COLOUR_THRESHOLD 
+          && colour < GlobalVars.yellow + COLOUR_THRESHOLD;
   }
 
   /**
    * Instructs robot what to do when this behaviour is suppressed.
    */
   public void suppress() {
+    // No action required
   }
 
   /**
    * Instructs robot what to do when this behaviour is active.
    */
   public void action() {
-    lejos.nxt.Sound.twoBeeps();
+    onYellow = !onYellow; // we either moved onto yellow, or off of yellow so update state appropriately
+    if (onYellow) {
+      // Beep whenever we first see yellow
+      lejos.nxt.Sound.twoBeeps();
+    }
   }
 
 }
