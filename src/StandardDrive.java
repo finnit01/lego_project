@@ -13,42 +13,42 @@ import lejos.navigation.TachoPilot;
  */
 public class StandardDrive implements Behavior {
 
-  TachoPilot pilot;
+    TachoPilot pilot;
 
-  public StandardDrive(TachoPilot pilot) {
-    this.pilot = pilot;
-  }
-
-  /**
-   * Take control in any situation.
-   * @return true
-   */
-  public boolean takeControl() {
-    return true;
-  }
-
-  /**
-   * Stop when this behaviour is suppressed.
-   */
-  public void suppress() {
-    pilot.stop();
-  }
-
-  /**
-   * Drive forward and use energy.
-   */
-  public void action() {
-//    pilot.reset();
-    pilot.forward();
-    while (pilot.isMoving()) {
-      try {
-        Thread.sleep(1000);
-      }
-      catch (Exception e) {}
-      GlobalVars.setEnergy(GlobalVars.getEnergy() - (int)pilot.getMoveSpeed());
-//      LCD.drawInt(GlobalVars.getEnergy(),0,0);
-//      LCD.drawString(""+pilot.getMoveSpeed(), 0, 1);
+    public StandardDrive(TachoPilot pilot) {
+        this.pilot = pilot;
     }
-  }
+
+    /**
+     * Take control in any situation.
+     * @return true
+     */
+    public boolean takeControl() {
+        return true;
+    }
+
+    /**
+     * Stop when this behaviour is suppressed.
+     */
+    public void suppress() {
+        pilot.stop();
+    }
+
+    /**
+     * Drive forward and use energy.
+     */
+    public void action() {
+        //    pilot.reset();
+        pilot.forward();
+        while (pilot.isMoving()) {
+            try {
+                Thread.sleep(1000);
+            }
+            catch (Exception e) {}
+            //      GlobalVars.setEnergy(GlobalVars.getEnergy() - (int)pilot.getMoveSpeed());
+            //      LCD.drawInt(GlobalVars.getEnergy(),0,0);
+            //      LCD.drawString(""+pilot.getMoveSpeed(), 0, 1);
+        }
+    }
 
 }
