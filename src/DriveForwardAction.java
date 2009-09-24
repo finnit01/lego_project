@@ -4,7 +4,8 @@ import lejos.navigation.TachoPilot;
 
 public class DriveForwardAction implements Action {
 
-    private static final int MAXIMUM_SPEED = 100;
+    private static final int MAXIMUM_SPEED = 20;
+    private static final int SLOW_SPEED = 5;
 
     private TachoPilot pilot;
     private EnergyLevel energyLevel;
@@ -26,8 +27,6 @@ public class DriveForwardAction implements Action {
 
     public void action() {
         setMoveSpeed(energyLevel.getEnergyLevel());
-        pilot.forward();
-        isActive = true;
     }
 
     public void suppress() {
@@ -43,13 +42,18 @@ public class DriveForwardAction implements Action {
         }
     }
 
-    private void setMoveSpeed(double speed) {
-        int newspeed = ((int) (speed * MAXIMUM_SPEED));
+    private void setMoveSpeed(double energy) {
+
+        int speed = (energy < 0.2) ? SLOW_SPEED : MAXIMUM_SPEED;
+
         LCD.clear();
-        LCD.drawString("Speed -> " + newspeed, 0, 0);
-        pilot.setMoveSpeed((int) (speed * MAXIMUM_SPEED));
-        if (newspeed > 0) {
+        LCD.drawString("Energy: " + energy, 0, 0);
+        LCD.drawString("Speed:  " + speed, 0, 1);
+
+        pilot.setMoveSpeed(speed);
+        if (speed > 0) {
             pilot.forward();
+            isActive = true;
         }
         else {
             pilot.stop();
