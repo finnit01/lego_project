@@ -38,23 +38,23 @@ public class NxtBehaviour {
         // start with full energy (1.0);
         EnergyLevel energyLevel = new EnergyLevel(1.0);
 
-        // ask for yellow sample
+        // ask for green sample
         LCD.clear();
-        LCD.drawString("Yellow paper",0,0);
+        LCD.drawString("Green paper",0,0);
         Button.waitForPress();
 
         // read it
-        int yellow = light.readNormalizedValue();
+        int green = light.readNormalizedValue();
 
         // display it
         LCD.clear();
-        LCD.drawInt(yellow, 0, 0);
+        LCD.drawInt(green, 0, 0);
 
-        // create the detectYellow behaviour with it
-        Behavior detectYellow = new DetectColour(
+        // create the detectGreen behaviour with it
+        Behavior detectGreen = new DetectColour(
                 light,
-                yellow-20,
-                yellow+20,
+                green-20,
+                green+20,
                 new RestoreFullEnergyAction(energyLevel),
                 new TwoBeepsAction());
 
@@ -79,7 +79,7 @@ public class NxtBehaviour {
             );
 
         // setup, start the Arbitrator
-        Behavior[] behaviours = {defaultBehaviour, detectYellow};
+        Behavior[] behaviours = {defaultBehaviour, detectGreen};
         Arbitrator arbitrator = new Arbitrator(behaviours);
         arbitrator.start();
     }
