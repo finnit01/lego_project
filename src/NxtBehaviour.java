@@ -25,6 +25,23 @@ public class NxtBehaviour {
     static final SensorPort SOUND_PORT = SensorPort.S3;
     static final SensorPort TOUCH_PORT = SensorPort.S2;
 
+    private static int getColourSample(LightSensor light, String prompt) {
+
+        // ask for sample
+        LCD.clear();
+        LCD.drawString(prompt, 0, 0);
+        Button.waitForPress();
+
+        // read it
+        int colour = light.readNormalizedValue();
+
+        // display it
+        LCD.clear();
+        LCD.drawInt(colour, 0, 0);
+
+        return colour;
+    }
+
     public static void main(String[] args) {
 
         // use a TachoPilot to control motors
@@ -38,25 +55,28 @@ public class NxtBehaviour {
         // start with full energy (1.0);
         EnergyLevel energyLevel = new EnergyLevel(1.0);
 
-        // ask for green sample
-        LCD.clear();
-        LCD.drawString("Green paper",0,0);
-        Button.waitForPress();
+        int green = getColourSample(light, "Green Paper");
+        int yellow = getColourSample(light, "Yellow Paper");
 
-        // read it
-        int green = light.readNormalizedValue();
 
-        // display it
-        LCD.clear();
-        LCD.drawInt(green, 0, 0);
+        Action restoreEnergyAndBeep = new CombinedAction(
+                new RestoreFullEnergyAction(energyLevel),
+                new BeepAction());
 
-        // create the detectGreen behaviour with it
+        // create the detectGreen behaviour
         Behavior detectGreen = new DetectColour(
                 light,
                 green-20,
                 green+20,
-                new RestoreFullEnergyAction(energyLevel),
-                new TwoBeepsAction());
+                restoreEnergyAndBeep,
+                null);
+
+        Behavior detectYellow = new DetectColour(
+                light,
+                yellow-20,
+                yellow+20,
+                new GoCrazyAction(pilot),
+                null);
 
         // wait for sound
         while (sound.readValue() < 40) {
@@ -79,7 +99,7 @@ public class NxtBehaviour {
             );
 
         // setup, start the Arbitrator
-        Behavior[] behaviours = {defaultBehaviour, detectGreen};
+        Behavior[] behaviours = {defaultBehaviour, detectGreen, detectYellow};
         Arbitrator arbitrator = new Arbitrator(behaviours);
         arbitrator.start();
     }
