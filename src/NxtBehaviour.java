@@ -34,6 +34,10 @@ public class NxtBehaviour {
         LightSensor light = new LightSensor(LIGHT_PORT);
         SoundSensor sound = new SoundSensor(SOUND_PORT, true);
 
+        // set up EnergyLevel object to keep track of current energy level
+        // start with full energy (1.0);
+        EnergyLevel energyLevel = new EnergyLevel(1.0);
+
         // ask for yellow sample
         LCD.clear();
         LCD.drawString("Yellow paper",0,0);
@@ -51,17 +55,13 @@ public class NxtBehaviour {
                 light,
                 yellow-20,
                 yellow+20,
-                new BeepAction(),
+                new RestoreFullEnergyAction(energyLevel),
                 new TwoBeepsAction());
 
         // wait for sound
-//        while (sound.readValue() < 80) {
-//            // waiting
-//        }
-
-        // set up EnergyLevel object to keep track of current energy level
-        // start with full energy (1.0);
-        EnergyLevel energyLevel = new EnergyLevel(1.0);
+        while (sound.readValue() < 40) {
+            // waiting
+        }
 
         // combine the DriveForward and DrainEnergy actions so that both can
         // run as one action
