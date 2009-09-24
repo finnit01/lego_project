@@ -55,9 +55,9 @@ public class NxtBehaviour {
                 new TwoBeepsAction());
 
         // wait for sound
-        while (sound.readValue() < 80) {
-            // waiting
-        }
+//        while (sound.readValue() < 80) {
+//            // waiting
+//        }
 
         // set up EnergyLevel object to keep track of current energy level
         // start with full energy (1.0);

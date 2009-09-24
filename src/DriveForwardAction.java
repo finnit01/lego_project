@@ -1,9 +1,10 @@
+import lejos.nxt.LCD;
 import lejos.subsumption.Behavior;
 import lejos.navigation.TachoPilot;
 
 public class DriveForwardAction implements Action {
 
-    private static final int MAXIMUM_SPEED = 10;
+    private static final int MAXIMUM_SPEED = 100;
 
     private TachoPilot pilot;
     private EnergyLevel energyLevel;
@@ -43,6 +44,16 @@ public class DriveForwardAction implements Action {
     }
 
     private void setMoveSpeed(double speed) {
+        int newspeed = ((int) (speed * MAXIMUM_SPEED));
+        LCD.clear();
+        LCD.drawString("Speed -> " + newspeed, 0, 0);
         pilot.setMoveSpeed((int) (speed * MAXIMUM_SPEED));
+        if (newspeed > 0) {
+            pilot.forward();
+        }
+        else {
+            pilot.stop();
+            isActive = false;
+        }
     }
 }

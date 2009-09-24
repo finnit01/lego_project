@@ -12,6 +12,7 @@ public class DrainEnergyAction implements Action {
     private EnergyLevel energyLevel;
     private Timer timer;
 
+    // TODO: pass ing decrease amount and interval
     public DrainEnergyAction(EnergyLevel energyLevel) {
 
         if (energyLevel==null) throw new NullPointerException("energyLevel cannot be null.");
