@@ -1,5 +1,5 @@
 import lejos.navigation.TachoPilot;
-import lejos.nxt.Sound;
+//import lejos.nxt.Sound;
 
 public class GoCrazyAction implements Action {
 

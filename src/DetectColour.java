@@ -2,8 +2,8 @@ import lejos.subsumption.Behavior;
 //import lejos.nxt.SensorPort;
 //import lejos.nxt.SoundSensor;
 //import lejos.nxt.TouchSensor;
-import lejos.navigation.TachoPilot;
-import lejos.nxt.Sound;
+//import lejos.navigation.TachoPilot;
+//import lejos.nxt.Sound;
 import lejos.nxt.LightSensor;
 
 /**

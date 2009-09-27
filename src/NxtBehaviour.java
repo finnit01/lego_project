@@ -94,12 +94,21 @@ public class NxtBehaviour {
             new DrainEnergyAction(energyLevel)
             );
 
+        CombinedAction sleepAndGainEnergy = new CombinedAction(
+            new SleepAction(sound),
+            restoreEnergyAndBeep
+            );
+
+        SleepBehavior sleepBehavior = new SleepBehavior(
+            sleepAndGainEnergy, energyLevel
+            );
+
         DefaultBehaviour defaultBehaviour = new DefaultBehaviour(
             driveAndLoseEnergy
             );
 
         // setup, start the Arbitrator
-        Behavior[] behaviours = {defaultBehaviour, detectGreen, detectYellow};
+        Behavior[] behaviours = {defaultBehaviour, detectGreen, detectYellow, sleepBehavior};
         Arbitrator arbitrator = new Arbitrator(behaviours);
         arbitrator.start();
     }

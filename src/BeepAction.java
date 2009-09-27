@@ -1,4 +1,4 @@
-import lejos.nxt.Sound;
+//import lejos.nxt.Sound;
 
 public class BeepAction implements Action {
     public void action() {

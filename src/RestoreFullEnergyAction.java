@@ -1,5 +1,5 @@
 import lejos.nxt.LCD;
-import lejos.nxt.Sound;
+//import lejos.nxt.Sound;
 
 public class RestoreFullEnergyAction implements Action {
 
