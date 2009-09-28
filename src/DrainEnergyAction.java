@@ -1,18 +1,37 @@
 import lejos.util.Timer;
 import lejos.util.TimerListener;
 
+/**
+ * Handles the actions that is required for when the energy
+ * of the robot is being drained.
+ * @author
+ *
+ */
 public class DrainEnergyAction implements Action {
 
-    // how much to decrease the energy level by each time
+    /**
+     * The amount to decrease the energy level each time quanta.
+     */
     private static final double DECREASE_AMOUNT = 0.05;
-
-    // how long to wait between each decrease
+    /**
+     * The time to wait during each time quanta.
+     */
     private static final int TIMER_INTERVAL_MILLIS = 1000;
-
+    /**
+     * The current energy level of the robot.
+     */
     private EnergyLevel energyLevel;
+    /**
+     * A timer used to keep track each time quanta.
+     */
     private Timer timer;
 
     // TODO: pass ing decrease amount and interval
+    /**
+     * Creates the DrainEnergy object and sets instance variables to those
+     * given in the parameters.
+     * @param energyLevel The energy level of the robot.
+     */
     public DrainEnergyAction(EnergyLevel energyLevel) {
 
         if (energyLevel==null) throw new NullPointerException("energyLevel cannot be null.");
@@ -23,17 +42,33 @@ public class DrainEnergyAction implements Action {
         timer = new Timer(TIMER_INTERVAL_MILLIS, new DecreaseEnergy());
     }
 
-    // Action methods
+    /**
+     * Start the timer to performed time-based events
+     * when action is needed.
+     */
     public void action() {
         timer.start();
     }
 
+    /**
+    * Stop the timer to stop time-based events when
+    * the action is not needed.
+    */
     public void suppress() {
         timer.stop();
     }
 
+    /**
+     * Implements the decrement of energy over each time
+     * quanta.
+     * @author
+     *
+     */
     private class DecreaseEnergy implements TimerListener {
 
+    	/**
+    	 * Performs these actions each time quanta.
+    	 */
         public void timedOut() {
             double energy = energyLevel.getEnergyLevel();
             energy-=DECREASE_AMOUNT;

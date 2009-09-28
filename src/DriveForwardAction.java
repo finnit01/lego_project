@@ -2,15 +2,41 @@ import lejos.nxt.LCD;
 //import lejos.subsumption.Behavior;
 import lejos.navigation.TachoPilot;
 
+/**
+ * Handles the actions required for the robot
+ * to drive forward.
+ * @author
+ *
+ */
 public class DriveForwardAction implements Action {
 
+	/**
+	 * Maximum speed for the robot to move.
+	 */
     private static final int MAXIMUM_SPEED = 20;
+    /**
+     * Minimum speed for the robot to move.
+     */
     private static final int SLOW_SPEED = 5;
 
+    /**
+     * Reference to the TachoPilot object.
+     */
     private TachoPilot pilot;
+    /**
+     * Reference to the robot's EnergyLevel object.
+     */
     private EnergyLevel energyLevel;
+    /**
+     * Indicates whether the robot is active.
+     */
     private boolean isActive;
 
+    /**
+     * Constructor for the DriveForwardAction object.
+     * @param pilot The TachoPilot object used for the robot.
+     * @param energyLevel The EnergyLevel object used for the robot.
+     */
     public DriveForwardAction(TachoPilot pilot, EnergyLevel energyLevel) {
 
         if (pilot==null) throw new NullPointerException("pilot cannot be null.");
@@ -25,15 +51,27 @@ public class DriveForwardAction implements Action {
 
     }
 
+    /**
+     * Sets the moving speed based on the current energy level.
+     */
     public void action() {
         setMoveSpeed(energyLevel.getEnergyLevel());
     }
 
+    /**
+     * Stops the robot, and stops the robot's activity.
+     */
     public void suppress() {
         pilot.stop();
         isActive = false;
     }
 
+    /**
+     * Listens to energy level changed, and changes the moving speed
+     * of the robot accordingly.
+     * @author
+     *
+     */
     private class EnergyListener implements EnergyLevelListener {
         public void energyLevelChanged() {
             if (isActive) {
@@ -42,6 +80,11 @@ public class DriveForwardAction implements Action {
         }
     }
 
+    /**
+     * Sets the move speed of the robot based on the energy level
+     * given.
+     * @param energy The energy level of the robot.
+     */
     private void setMoveSpeed(double energy) {
 
         int speed = (energy < 0.2) ? SLOW_SPEED : MAXIMUM_SPEED;

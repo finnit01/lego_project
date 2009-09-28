@@ -14,15 +14,48 @@ import lejos.nxt.LightSensor;
  */
 public class DetectColour implements Behavior {
 
+	/**
+	 * Holds a reference to the light sensor port for the robot.
+	 */
     private LightSensor light;
+    /**
+     * Minimum colour used in detection.
+     */
     private int colourMin;
+    /**
+     * Maximum colour used in detection.
+     */
     private int colourMax;
+    /**
+     * The action required when sensor is located over
+     * desired colour.
+     */
     private Action onColourAction;
+    /**
+     * The action required when sensor is located off
+     * the desired colour.
+     */
     private Action offColourAction;
+    /**
+     * The action to perform when current action is needed
+     * to be suppressed.
+     */
     private Action suppressAction;
+    /**
+     * A boolean used to indicated whether the robot is
+     * currently on a colour.
+     */
+    private boolean onColour;
 
-    private boolean onColour; // are we currently over colour?
-
+    /**
+     * Creates an DetectColour object and allocates the instance variables
+     * to those given as parameters.
+     * @param light The reference to the light sensor used.
+     * @param colourMin The minimum colour value to look for.
+     * @param colourMax The maximum colour value to look for.
+     * @param onColourAction The action to take when on colour.
+     * @param offColourAction The action to take when off colour.
+     */
     public DetectColour(LightSensor light, int colourMin,
             int colourMax, Action onColourAction, Action offColourAction) {
         this.light = light;
@@ -36,6 +69,7 @@ public class DetectColour implements Behavior {
 
     /**
      * Take control if crossing onto or off colour region.
+     * @return A boolean indicating for the robot to take control.
      */
     public boolean takeControl() {
         // Take action if either:
@@ -44,6 +78,11 @@ public class DetectColour implements Behavior {
         return onColour != seeColour();
     }
 
+    /**
+     * Detects whether it is over the desired colour.
+     * @return A boolean boolean value indicating whether the sensor is
+     * currently over the desired colour.
+     */
     private boolean seeColour() {
         int colour = light.readNormalizedValue();
         return colour >= colourMin && colour <= colourMax;

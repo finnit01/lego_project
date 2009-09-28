@@ -17,15 +17,47 @@ import lejos.nxt.LCD;
  */
 public class NxtBehaviour {
 
+	/**
+	 * Static variable for left motor port.
+	 */
     static final Motor LEFT_MOTOR = Motor.C;
+	/**
+	 * Static variable for right motor port.
+	 */
     static final Motor RIGHT_MOTOR = Motor.A;
+	/**
+	 * Static variable for the wheel diameter of the robot.
+	 */
     static final int WHEEL_DIAMETER = 56;
+	/**
+	 * Static variable for the track distance of the robot.
+	 */
     static final int TRACK_DISTANCE = 110;
+	/**
+	 * Static variable for the ultra-sonic sensor port.
+	 */
     static final SensorPort SONIC_PORT = SensorPort.S1;
+	/**
+	 * Static variable for the light sensor port.
+	 */
     static final SensorPort LIGHT_PORT = SensorPort.S4;
+	/**
+	 * Static variable for the sound sensor port.
+	 */
     static final SensorPort SOUND_PORT = SensorPort.S3;
+	/**
+	 * Static variable for the touch sensor port.
+	 */
     static final SensorPort TOUCH_PORT = SensorPort.S2;
 
+	/**
+	 * Displays the current light sensor value on the NXT LCD screen
+	 * and returns it.
+	 * @param light The light sensor port.
+	 * @param prompt User message displayed prior to displaying the
+	 *               light sensor value.
+	 * @return The current value of the light sensor.
+	 */
     private static int getColourSample(LightSensor light, String prompt) {
 
         // ask for sample
@@ -43,6 +75,12 @@ public class NxtBehaviour {
         return colour;
     }
 
+	/**
+	 * Sets up and runs the main interfaces associated with the
+	 * NXT robot.
+	 * @param args Any arguments that is needed to be passed to
+	 *             the robot.
+	 */
     public static void main(String[] args) {
 
         // use a TachoPilot to control motors
