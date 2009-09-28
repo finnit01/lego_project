@@ -6,6 +6,7 @@ import lejos.subsumption.Arbitrator;
 import lejos.subsumption.Behavior;
 import lejos.nxt.SoundSensor;
 import lejos.nxt.LightSensor;
+import lejos.nxt.UltrasonicSensor;
 import lejos.nxt.LCD;
 
 /**
@@ -50,6 +51,7 @@ public class NxtBehaviour {
         // create sensor objects
         LightSensor light = new LightSensor(LIGHT_PORT);
         SoundSensor sound = new SoundSensor(SOUND_PORT, true);
+        UltrasonicSensor sonic = new UltrasonicSensor(SONIC_PORT);
 
         // set up EnergyLevel object to keep track of current energy level
         // start with full energy (1.0);
@@ -57,6 +59,7 @@ public class NxtBehaviour {
 
         int green = getColourSample(light, "Green Paper");
         int yellow = getColourSample(light, "Yellow Paper");
+        int red = getColourSample(light, "Red Paper");
 
 
         Action restoreEnergyAndBeep = new CombinedAction(
@@ -77,6 +80,13 @@ public class NxtBehaviour {
                 yellow+20,
                 new GoCrazyAction(pilot),
                 null);
+
+        Behavior detectRed = new DetectColour(
+            light,
+            red-20,
+            red+20,
+            new LoseEnergyAction(),
+            null);
 
         // wait for sound
         while (sound.readValue() < 40) {
@@ -103,12 +113,14 @@ public class NxtBehaviour {
             sleepAndGainEnergy, energyLevel
             );
 
+        AvoidObstaclesBehavior avoidObstaclesBehavior = new AvoidObstaclesBehavior(sonic, pilot);
+
         DefaultBehaviour defaultBehaviour = new DefaultBehaviour(
             driveAndLoseEnergy
             );
 
         // setup, start the Arbitrator
-        Behavior[] behaviours = {defaultBehaviour, detectGreen, detectYellow, sleepBehavior};
+        Behavior[] behaviours = {defaultBehaviour, detectGreen, detectYellow, avoidObstaclesBehavior, sleepBehavior};
         Arbitrator arbitrator = new Arbitrator(behaviours);
         arbitrator.start();
     }

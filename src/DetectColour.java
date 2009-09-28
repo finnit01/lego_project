@@ -14,7 +14,7 @@ import lejos.nxt.LightSensor;
  */
 public class DetectColour implements Behavior {
 
-    private lejos.nxt.LightSensor light;
+    private LightSensor light;
     private int colourMin;
     private int colourMax;
     private Action onColourAction;
