@@ -85,7 +85,7 @@ public class NxtBehaviour {
             light,
             red-20,
             red+20,
-            new LoseEnergyAction(),
+            new LoseEnergyAction(energyLevel),
             null);
 
         // wait for sound
