@@ -32,7 +32,7 @@ public class NxtBehaviour {
   /**
    * Static variable for the track distance of the robot.
    */
-  static final int TRACK_DISTANCE = 110;
+  static final int TRACK_DISTANCE = 119;
   /**
    * Static variable for the ultra-sonic sensor port.
    */
@@ -60,12 +60,13 @@ public class NxtBehaviour {
    *          User message displayed prior to displaying the light sensor value.
    * @return The current value of the light sensor.
    */
-  private static int getColourSample(LightSensor light, String prompt) {
+  private static int getColourSample(LightSensor light, SoundSensor sound, String prompt) {
 
     // ask for sample
     LCD.clear();
     LCD.drawString(prompt, 0, 0);
-    Button.waitForPress();
+    //Button.waitForPress();
+    while (sound.getValue() < 40) {}
 
     // read it
     int colour = light.readNormalizedValue();
@@ -98,9 +99,9 @@ public class NxtBehaviour {
     // start with full energy (1.0);
     EnergyLevel energyLevel = new EnergyLevel(1.0);
 
-    int green = getColourSample(light, "Green Paper");
-    int yellow = getColourSample(light, "Yellow Paper");
-    int red = getColourSample(light, "Red Paper");
+    int green = getColourSample(light, sound, "Green Paper");
+    int yellow = getColourSample(light, sound, "Yellow Paper");
+    int red = getColourSample(light, sound, "Red Paper");
 
     Action restoreEnergyAndBeep = new CombinedAction(
         new RestoreFullEnergyAction(energyLevel), new BeepAction());
