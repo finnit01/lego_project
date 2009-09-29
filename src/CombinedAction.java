@@ -8,9 +8,9 @@
  */
 public class CombinedAction implements Action {
 
-	/**
-	 * The first action required in the combination.
-	 */
+  /**
+   * The first action required in the combination.
+   */
     private Action firstAction;
     /**
      * The second action required in the combination.
@@ -34,7 +34,7 @@ public class CombinedAction implements Action {
 
     /**
      * The combined actions to take place.
-     */    
+     */
     public void action() {
         firstAction.action();
         secondAction.action();
@@ -48,4 +48,3 @@ public class CombinedAction implements Action {
         secondAction.suppress();
     }
 }
-
