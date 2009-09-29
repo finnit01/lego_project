@@ -66,7 +66,7 @@ public class NxtBehaviour {
     LCD.clear();
     LCD.drawString(prompt, 0, 0);
     //Button.waitForPress();
-    while (sound.getValue() < 40) {}
+    while (sound.readValue() < 40) {}
 
     // read it
     int colour = light.readNormalizedValue();
