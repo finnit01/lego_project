@@ -7,6 +7,7 @@ import lejos.subsumption.Behavior;
 import lejos.nxt.SoundSensor;
 import lejos.nxt.LightSensor;
 import lejos.nxt.UltrasonicSensor;
+import lejos.nxt.TouchSensor;
 import lejos.nxt.LCD;
 
 /**
@@ -95,6 +96,7 @@ public class NxtBehaviour {
     LightSensor light = new LightSensor(LIGHT_PORT);
     SoundSensor sound = new SoundSensor(SOUND_PORT, true);
     UltrasonicSensor sonic = new UltrasonicSensor(SONIC_PORT);
+    TouchSensor touch = new TouchSensor(TOUCH_PORT);
 
     // set up EnergyLevel object to keep track of current energy level
     // start with full energy (1.0);
@@ -103,13 +105,11 @@ public class NxtBehaviour {
     int green = getColourSample(light, "Green Paper");
     int yellow = getColourSample(light, "Yellow Paper");
     int red = getColourSample(light, "Red Paper");
-    int table = getColourSample(light, "Table");
 
     LCD.clear();
     LCD.drawInt(green, 0, 0);
     LCD.drawInt(yellow, 0, 1);
     LCD.drawInt(red, 0, 2);
-    LCD.drawInt(table, 0, 3);
 
     Action restoreEnergyAndBeep = new CombinedAction(
         new RestoreFullEnergyAction(energyLevel), new BeepAction());
@@ -140,7 +140,7 @@ public class NxtBehaviour {
         new DrainEnergyAction(energyLevel));
 
     CombinedAction sleepAndGainEnergy = new CombinedAction(new SleepAction(
-        sound), restoreEnergyAndBeep);
+        sound, touch), restoreEnergyAndBeep);
 
     SleepBehavior sleepBehavior = new SleepBehavior(sleepAndGainEnergy,
         energyLevel);
