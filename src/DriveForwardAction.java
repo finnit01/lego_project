@@ -81,11 +81,19 @@ public class DriveForwardAction implements Action {
 
   private void setMoveSpeed(double energy) {
 
-    int speed = (energy < 0.2) ? SLOW_SPEED : MAXIMUM_SPEED;
+    int speed;
+
+    LCD.clear();
+    if (energy < 0.2) {
+        WombotLCD.drawNeutral(energy);
+        speed = SLOW_SPEED;
+    }
+    else {
+        WombotLCD.drawSmile(energy);
+        speed = MAXIMUM_SPEED;
+    }
 
     //drawEnergy();
-    LCD.clear();
-    WombotLCD.drawNeutral(energy);
     // LCD.clear();
     // LCD.drawString("Energy: " + energy, 0, 0);
     // LCD.drawString("Speed: " + speed, 0, 1);
