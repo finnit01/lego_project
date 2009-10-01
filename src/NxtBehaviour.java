@@ -104,12 +104,12 @@ public class NxtBehaviour {
 
     int green = getColourSample(light, "Green Paper");
     int yellow = getColourSample(light, "Yellow Paper");
-    int red = getColourSample(light, "Red Paper");
+    int blue = getColourSample(light, "Blue Paper");
 
     LCD.clear();
     LCD.drawInt(green, 0, 0);
     LCD.drawInt(yellow, 0, 1);
-    LCD.drawInt(red, 0, 2);
+    LCD.drawInt(blue, 0, 2);
 
     Action restoreEnergyAndBeep = new CombinedAction(
         new RestoreFullEnergyAction(energyLevel), new BeepAction());
@@ -121,7 +121,7 @@ public class NxtBehaviour {
     Behavior detectYellow = new DetectColour(light, yellow - COLOUR_TOLERANCE,
         yellow + COLOUR_TOLERANCE, new GoCrazyAction(pilot), null);
 
-    Behavior detectRed = new DetectColour(light, red - COLOUR_TOLERANCE, red
+    Behavior detectBlue = new DetectColour(light, blue - COLOUR_TOLERANCE, blue
         + COLOUR_TOLERANCE, new LoseEnergyAction(energyLevel), null);
 
     // wait for sound
@@ -152,7 +152,7 @@ public class NxtBehaviour {
 
     // setup, start the Arbitrator
     Behavior[] behaviours = { defaultBehaviour, detectGreen, detectYellow,
-        detectRed, avoidObstaclesBehavior, sleepBehavior };
+        detectBlue, avoidObstaclesBehavior, sleepBehavior };
     Arbitrator arbitrator = new Arbitrator(behaviours);
     arbitrator.start();
   }
