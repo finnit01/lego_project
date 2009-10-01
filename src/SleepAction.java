@@ -59,10 +59,10 @@ public class SleepAction implements Action {
       int w = (int) note[i + 1];
       int n = (int) note[i];
       if (n != 0) {
-        Sound.playTone(n, w * 10);
+        Sound.playTone(n, w);
       }
       try {
-        Thread.sleep(w * 10);
+        Thread.sleep(w);
       } catch (InterruptedException e) {
       }
     }
