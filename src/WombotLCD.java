@@ -43,10 +43,11 @@ public class WombotLCD
 //            //g.drawLine(9,i,(int)(10.00+0.08*energy),i);
 //            g.drawLine(9,i,(int)(10.00+1*energy),i);
 //        }
-        g.drawRect(5,5,95,20);
-        g.drawString("0",2,23,false);
+        g.drawString("WOMBOT",40,50);
+        g.drawRect(5,5,90,20);
+        g.drawString("0",2,30,false);
         g.drawString("100",81,30,false);
-        g.drawString("ENERGY",35,30,false);
+        g.drawString("ENERGY",30,30,false);
         g.fillRect(5, 5, (int)(energy*90), 20);
     }
 
