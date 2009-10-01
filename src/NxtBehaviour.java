@@ -143,7 +143,7 @@ public class NxtBehaviour {
         new DrainEnergyAction(energyLevel));
 
     CombinedAction sleepAndGainEnergy = new CombinedAction(new SleepAction(
-        sound, touch), restoreEnergyAndBeep);
+        sound, touch, pilot), restoreEnergyAndBeep);
 
     SleepBehavior sleepBehavior = new SleepBehavior(sleepAndGainEnergy,
         energyLevel);

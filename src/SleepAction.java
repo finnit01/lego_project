@@ -1,3 +1,4 @@
+import lejos.navigation.TachoPilot;
 import lejos.nxt.SoundSensor;
 import lejos.nxt.TouchSensor;
 import lejos.nxt.Sound;
@@ -19,6 +20,7 @@ public class SleepAction implements Action {
    */
   private SoundSensor sound;
   private TouchSensor touch;
+  private TachoPilot pilot;
 
   /**
    * Sets the instance variables to those given as parameters.
@@ -26,9 +28,10 @@ public class SleepAction implements Action {
    * @param sound
    *          The sound sensor being used.
    */
-  public SleepAction(SoundSensor sound, TouchSensor touch) {
+  public SleepAction(SoundSensor sound, TouchSensor touch, TachoPilot pilot) {
     this.sound = sound;
     this.touch = touch;
+    this.pilot = pilot;
   }
 
   /**
