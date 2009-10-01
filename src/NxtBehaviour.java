@@ -21,11 +21,11 @@ public class NxtBehaviour {
   /**
    * Static variable for left motor port.
    */
-  static final Motor LEFT_MOTOR = Motor.C;
+  static final Motor LEFT_MOTOR = Motor.A;
   /**
    * Static variable for right motor port.
    */
-  static final Motor RIGHT_MOTOR = Motor.A;
+  static final Motor RIGHT_MOTOR = Motor.C;
   /**
    * Static variable for the wheel diameter of the robot.
    */
