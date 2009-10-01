@@ -51,7 +51,7 @@ public class NxtBehaviour {
    */
   static final SensorPort TOUCH_PORT = SensorPort.S2;
 
-  static final int COLOUR_TOLERANCE = 5;
+  static final int COLOUR_TOLERANCE = 10;
 
   /**
    * Displays the current light sensor value on the NXT LCD screen and returns

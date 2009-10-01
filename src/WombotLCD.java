@@ -35,14 +35,19 @@ public class WombotLCD
        */
 
     private static void drawEnergy(double energy) {
-        g.drawRect(7,3,85,9);
+//        g.drawRect(7,3,85,9);
+//        g.drawString("0",2,23,false);
+//        g.drawString("100",81,23,false);
+//        g.drawString("ENERGY",35,23,false);
+//        for(int i = 5; i < 10; i++){
+//            //g.drawLine(9,i,(int)(10.00+0.08*energy),i);
+//            g.drawLine(9,i,(int)(10.00+1*energy),i);
+//        }
+        g.drawRect(5,5,95,20);
         g.drawString("0",2,23,false);
-        g.drawString("100",81,23,false);
-        g.drawString("ENERGY",35,23,false);
-        for(int i = 5; i < 11; i++){
-            //g.drawLine(9,i,(int)(10.00+0.08*energy),i);
-            g.drawLine(9,i,(int)(10.00+(85-7)*energy),i);
-        }
+        g.drawString("100",81,30,false);
+        g.drawString("ENERGY",35,30,false);
+        g.fillRect(5, 5, (int)(energy*90), 20);
     }
 
     public static void drawNeutral(double energy){
