@@ -11,7 +11,7 @@ import lejos.nxt.LCD;
 
 /**
  * Handles the behaviours for the NXT robot.
- *
+ * 
  * @author Timothy Black, Malcolm King, Trevor Finnie
  * @version September 2009 (0.4)
  */
@@ -50,23 +50,24 @@ public class NxtBehaviour {
    */
   static final SensorPort TOUCH_PORT = SensorPort.S2;
 
+  static final int COLOUR_TOLERANCE = 10;
+
   /**
    * Displays the current light sensor value on the NXT LCD screen and returns
    * it.
-   *
+   * 
    * @param light
    *          The light sensor port.
    * @param prompt
    *          User message displayed prior to displaying the light sensor value.
    * @return The current value of the light sensor.
    */
-  private static int getColourSample(LightSensor light, SoundSensor sound, String prompt) {
+  private static int getColourSample(LightSensor light, String prompt) {
 
     // ask for sample
     LCD.clear();
     LCD.drawString(prompt, 0, 0);
-    //Button.waitForPress();
-    while (sound.readValue() < 40) {}
+    Button.waitForPress();
 
     // read it
     int colour = light.readNormalizedValue();
@@ -80,7 +81,7 @@ public class NxtBehaviour {
 
   /**
    * Sets up and runs the main interfaces associated with the NXT robot.
-   *
+   * 
    * @param args
    *          Any arguments that is needed to be passed to the robot.
    */
@@ -99,22 +100,29 @@ public class NxtBehaviour {
     // start with full energy (1.0);
     EnergyLevel energyLevel = new EnergyLevel(1.0);
 
-    int green = getColourSample(light, sound, "Green Paper");
-    int yellow = getColourSample(light, sound, "Yellow Paper");
-    int red = getColourSample(light, sound, "Red Paper");
+    int green = getColourSample(light, "Green Paper");
+    int yellow = getColourSample(light, "Yellow Paper");
+    int red = getColourSample(light, "Red Paper");
+    int table = getColourSample(light, "Table");
+
+    LCD.clear();
+    LCD.drawInt(green, 0, 0);
+    LCD.drawInt(yellow, 0, 1);
+    LCD.drawInt(red, 0, 2);
+    LCD.drawInt(table, 0, 3);
 
     Action restoreEnergyAndBeep = new CombinedAction(
         new RestoreFullEnergyAction(energyLevel), new BeepAction());
 
     // create the detectGreen behaviour
-    Behavior detectGreen = new DetectColour(light, green - 20, green + 20,
-        restoreEnergyAndBeep, null);
+    Behavior detectGreen = new DetectColour(light, green - COLOUR_TOLERANCE,
+        green + COLOUR_TOLERANCE, restoreEnergyAndBeep, null);
 
-    Behavior detectYellow = new DetectColour(light, yellow - 20, yellow + 20,
-        new GoCrazyAction(pilot), null);
+    Behavior detectYellow = new DetectColour(light, yellow - COLOUR_TOLERANCE,
+        yellow + COLOUR_TOLERANCE, new GoCrazyAction(pilot), null);
 
-    Behavior detectRed = new DetectColour(light, red - 20, red + 20,
-        new LoseEnergyAction(energyLevel), null);
+    Behavior detectRed = new DetectColour(light, red - COLOUR_TOLERANCE, red
+        + COLOUR_TOLERANCE, new LoseEnergyAction(energyLevel), null);
 
     // wait for sound
     while (sound.readValue() < 40) {

@@ -13,11 +13,11 @@ public class DriveForwardAction implements Action {
   /**
    * Maximum speed for the robot to move.
    */
-  private static final int MAXIMUM_SPEED = 20;
+  private static final int MAXIMUM_SPEED = 40;
   /**
    * Minimum speed for the robot to move.
    */
-  private static final int SLOW_SPEED = 5;
+  private static final int SLOW_SPEED = 10;
 
   /**
    * Reference to the TachoPilot object.
