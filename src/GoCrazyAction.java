@@ -30,6 +30,9 @@ public class GoCrazyAction implements Action {
      */
     public void action() {
         lejos.nxt.Sound.playTone(8000, 2000);
+        try {
+          Thread.sleep(1000);
+        } catch (Exception e) {}
         pilot.travel(-360);
         pilot.rotate((int)(Math.random()*720));
     }
