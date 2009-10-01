@@ -102,12 +102,12 @@ public class NxtBehaviour {
     // start with full energy (1.0);
     EnergyLevel energyLevel = new EnergyLevel(1.0);
 
-//    int green = getColourSample(light, "Green Paper");
-//    int yellow = getColourSample(light, "Yellow Paper");
-//    int blue = getColourSample(light, "Blue Paper");
-    int green = 426;
-    int yellow = 535;
-    int blue = 385;
+    int green = getColourSample(light, "Green Paper");
+    int yellow = getColourSample(light, "Yellow Paper");
+    int blue = getColourSample(light, "Blue Paper");
+//    int green = 426;
+//    int yellow = 535;
+//    int blue = 385;
 
     LCD.clear();
     LCD.drawInt(green, 0, 0);
