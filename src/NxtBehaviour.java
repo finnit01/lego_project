@@ -103,13 +103,13 @@ public class NxtBehaviour {
     EnergyLevel energyLevel = new EnergyLevel(1.0);
 
     int green = getColourSample(light, "Green Paper");
-    int yellow = getColourSample(light, "Yellow Paper");
+    int black = getColourSample(light, "Black Paper");
     int blue = getColourSample(light, "Blue Paper");
     int table = getColourSample(light, "Table");
 
     LCD.clear();
     LCD.drawInt(green, 0, 0);
-    LCD.drawInt(yellow, 0, 1);
+    LCD.drawInt(black, 0, 1);
     LCD.drawInt(blue, 0, 2);
     LCD.drawInt(table, 0, 3);
 
@@ -120,8 +120,8 @@ public class NxtBehaviour {
     Behavior detectGreen = new DetectColour(light, green - COLOUR_TOLERANCE,
         green + COLOUR_TOLERANCE, restoreEnergyAndBeep, null);
 
-    Behavior detectYellow = new DetectColour(light, yellow - COLOUR_TOLERANCE,
-        yellow + COLOUR_TOLERANCE, new GoCrazyAction(pilot), null);
+    Behavior detectBlack = new DetectColour(light, black - COLOUR_TOLERANCE,
+        black + COLOUR_TOLERANCE, new GoCrazyAction(pilot, energyLevel), null);
 
     Behavior detectBlue = new DetectColour(light, blue - COLOUR_TOLERANCE, blue
         + COLOUR_TOLERANCE, new LoseEnergyAction(energyLevel), null);
@@ -130,6 +130,7 @@ public class NxtBehaviour {
     while (sound.readValue() < 40) {
       // waiting
     }
+    LCD.clear();
 
     // combine the DriveForward and DrainEnergy actions so that both can
     // run as one action
@@ -153,7 +154,7 @@ public class NxtBehaviour {
     DefaultBehaviour defaultBehaviour = new DefaultBehaviour(driveAndLoseEnergy);
 
     // setup, start the Arbitrator
-    Behavior[] behaviours = { defaultBehaviour, detectGreen, detectYellow,
+    Behavior[] behaviours = { defaultBehaviour, detectGreen, detectBlack,
         detectBlue, avoidObstaclesBehavior, sleepBehavior };
     Arbitrator arbitrator = new Arbitrator(behaviours);
     arbitrator.start();

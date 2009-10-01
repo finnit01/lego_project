@@ -29,7 +29,7 @@ public class RestoreFullEnergyAction implements Action {
 	 */
     public void action() {
         LCD.clear();
-        LCD.drawString("Full Energy", 0, 0);
+        WombotLCD.drawSmile(1.0);
         energy.setEnergyLevel(1.0);
     }
 

@@ -26,6 +26,7 @@ public class LoseEnergyAction implements Action {
    */
   public void action() {
     energy.setEnergyLevel(energy.getEnergyLevel() / 2);
+    WombotLCD.drawFrown(energy.getEnergyLevel());
   }
 
   /**

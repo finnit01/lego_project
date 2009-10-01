@@ -1,4 +1,4 @@
-//import lejos.nxt.LCD;
+import lejos.nxt.LCD;
 //import lejos.subsumption.Behavior;
 import lejos.navigation.TachoPilot;
 import javax.microedition.lcdui.Graphics;
@@ -13,7 +13,7 @@ public class DriveForwardAction implements Action {
   /**
    * Maximum speed for the robot to move.
    */
-  private static final int MAXIMUM_SPEED = 100;
+  private static final int MAXIMUM_SPEED = 60;
   /**
    * Minimum speed for the robot to move.
    */
@@ -83,7 +83,9 @@ public class DriveForwardAction implements Action {
 
     int speed = (energy < 0.2) ? SLOW_SPEED : MAXIMUM_SPEED;
 
-    drawEnergy();
+    //drawEnergy();
+    LCD.clear();
+    WombotLCD.drawNeutral(energy);
     // LCD.clear();
     // LCD.drawString("Energy: " + energy, 0, 0);
     // LCD.drawString("Speed: " + speed, 0, 1);

@@ -13,15 +13,17 @@ public class GoCrazyAction implements Action {
 	 * for the robot.
 	 */
     private TachoPilot pilot;
+    private EnergyLevel energy;
 
     /**
      * Creates the GoCrazyAction object and sets instance
      * variables to the parameters given.
      * @param pilot The TachoPilot object of the robot.
      */
-    public GoCrazyAction(TachoPilot pilot) {
+    public GoCrazyAction(TachoPilot pilot, EnergyLevel energy) {
         if (pilot==null) throw new NullPointerException("pilot cannot be null.");
         this.pilot=pilot;
+        this.energy=energy;
     }
 
     /**
@@ -29,12 +31,17 @@ public class GoCrazyAction implements Action {
      * then do some rotations.
      */
     public void action() {
-        lejos.nxt.Sound.playTone(8000, 2000);
-        try {
-          Thread.sleep(3000);
-        } catch (Exception e) {}
-        pilot.travel(-360);
-        pilot.rotate((int)(Math.random()*720));
+        //pilot.backward();
+        //lejos.nxt.Sound.playTone(2000, 2000);
+        //try {
+        //  Thread.sleep(1000);
+        //} catch (Exception e) {}
+        //lejos.nxt.Sound.beepSequenceUp();
+        //pilot.rotate((int)(Math.random()*540), false);
+        WombotLCD.drawCrazy(energy.getEnergyLevel());
+        pilot.rotate(-90);
+        pilot.rotate(180);
+        pilot.rotate(-270);
     }
 
     /**
