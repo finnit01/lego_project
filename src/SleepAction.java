@@ -35,6 +35,7 @@ public class SleepAction implements Action {
    * Do nothing until a clap or another similar noise is heard.
    */
   public void action() {
+    WombotLCD.drawSleep(0.0);
     // play a lullaby tune once
     lullaby();
     // sleeping, do nothing but wait for a clap
