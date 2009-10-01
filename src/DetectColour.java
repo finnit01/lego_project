@@ -84,7 +84,7 @@ public class DetectColour implements Behavior {
      * currently over the desired colour.
      */
     private boolean seeColour() {
-        int colour = light.readValue();
+        int colour = light.readNormalizedValue();
         return colour >= colourMin && colour <= colourMax;
     }
 
