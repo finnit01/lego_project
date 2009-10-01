@@ -106,14 +106,17 @@ public class NxtBehaviour {
     LCD.drawString("SE1220",0,1);
     LCD.drawString("Lego Project",0,2);
     LCD.drawString("Group F",0,3);
-    LCD.drawString("Press to continue",0,5);
+    LCD.drawString("Press to",0,5);
+    LCD.drawString("continue...",0,6);
     Button.waitForPress();
 
     LCD.drawString("Place the light",0,0);
     LCD.drawString("sensor over the",0,1);
-    LCD.drawString("requested zone and",0,2);
-    LCD.drawString("press any button",0,3);
-    LCD.drawString("Press to continue",0,5);
+    LCD.drawString("requested zone",0,2);
+    LCD.drawString("and press any",0,3);
+    LCD.drawString("button",0,4);
+    LCD.drawString("Press to",0,6);
+    LCD.drawString("continue...",0,7);
     Button.waitForPress();
 
     int green = getColourSample(light, "Green Zone");
