@@ -102,6 +102,7 @@ public class NxtBehaviour {
     // start with full energy (1.0);
     EnergyLevel energyLevel = new EnergyLevel(1.0);
 
+    LCD.clear();
     LCD.drawString("Wombot",0,0);
     LCD.drawString("SE1220",0,1);
     LCD.drawString("Lego Project",0,2);
@@ -110,6 +111,7 @@ public class NxtBehaviour {
     LCD.drawString("continue...",0,6);
     Button.waitForPress();
 
+    LCD.clear();
     LCD.drawString("Place the light",0,0);
     LCD.drawString("sensor over the",0,1);
     LCD.drawString("requested zone",0,2);
