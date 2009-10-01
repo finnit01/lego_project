@@ -53,43 +53,43 @@ public class WombotLCD
 
     public static void drawNeutral(double energy){
         drawEnergy(energy);
-        g.drawLine(5,61,9,61);
-        g.drawRect(3,55,3,3);
-        g.drawRect(9,55,3,3);
+        g.drawLine(10,59,19,59);
+        g.drawRect(5,47,6,6);
+        g.drawRect(19,47,6,6);
     }
 
     public static void drawSmile(double energy){
         drawEnergy(energy);
-        g.drawLine(5,61,9,61);
-        g.drawLine(3,59,4,60);
-        g.drawLine(11,59,10,60);
-        g.drawRect(3,55,3,3);
-        g.drawRect(9,55,3,3);
+        g.drawLine(10,59,19,59);
+        g.drawLine(6,55,9,58);
+        g.drawLine(20,58,23,55);
+        g.drawRect(5,47,6,6);
+        g.drawRect(19,47,6,6);
     }
 
     public static void drawFrown(double energy){
         drawEnergy(energy);
-        g.drawLine(5,61,9,61);
-        g.drawLine(3,62,4,63);
-        g.drawLine(11,63,10,62);
-        g.drawLine(3,55,5,57);
-        g.drawLine(9,57,11,55);
+        g.drawLine(10,59,19,59);
+        g.drawLine(6,63,9,60);
+        g.drawLine(20,60,23,63);
+        g.drawLine(5,47,10,52);
+        g.drawLine(19,52,24,47);
     }
 
     public static void drawSleep(double energy){
         drawEnergy(energy);
-        g.drawLine(5,60,9,60);
-        g.drawLine(3,57,5,57);
-        g.drawLine(9,57,11,57);
-        g.drawString("z",10,56,false);
-        g.drawString("Z",12,52,false);
+        g.drawLine(10,59,19,59);
+        g.drawLine(5,52,10,52);
+        g.drawLine(19,52,24,52);
+        g.drawString("z",23,43,false);
+        g.drawString("Z",26,40,false);
     }
 
     public static void drawCrazy(double energy){
         drawEnergy(energy);
-        g.drawRect(3,55,3,3);
-        g.drawRect(10,55,2,2);
-        g.drawRect(3,59,9,5);
+        g.drawRect(5,47,6,6);
+        g.drawRect(19,52,4,4);
+        g.drawRect(4,55,19,8);
     }
 
 }
