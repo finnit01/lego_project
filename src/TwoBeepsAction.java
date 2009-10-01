@@ -3,12 +3,12 @@
 /**
  * Performs the required calls for the 'Two Beeps'
  * action.
- * 
- * @author 
+ *
+ * @author
  *
  */
 public class TwoBeepsAction implements Action {
-	
+
 	/**
 	 * Creates two beep noises when the TwoBeepsAction
 	 * method is called.

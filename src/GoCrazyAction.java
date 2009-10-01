@@ -18,7 +18,7 @@ public class GoCrazyAction implements Action {
      * Creates the GoCrazyAction object and sets instance
      * variables to the parameters given.
      * @param pilot The TachoPilot object of the robot.
-     */    
+     */
     public GoCrazyAction(TachoPilot pilot) {
         if (pilot==null) throw new NullPointerException("pilot cannot be null.");
         this.pilot=pilot;

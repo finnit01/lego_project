@@ -11,7 +11,7 @@ import lejos.nxt.LCD;
 
 /**
  * Handles the behaviours for the NXT robot.
- * 
+ *
  * @author Timothy Black, Malcolm King, Trevor Finnie
  * @version September 2009 (0.4)
  */
@@ -55,7 +55,7 @@ public class NxtBehaviour {
   /**
    * Displays the current light sensor value on the NXT LCD screen and returns
    * it.
-   * 
+   *
    * @param light
    *          The light sensor port.
    * @param prompt
@@ -81,7 +81,7 @@ public class NxtBehaviour {
 
   /**
    * Sets up and runs the main interfaces associated with the NXT robot.
-   * 
+   *
    * @param args
    *          Any arguments that is needed to be passed to the robot.
    */

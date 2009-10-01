@@ -4,7 +4,7 @@ import lejos.nxt.LCD;
 /**
  * Handles the robot's actions when the
  * energy of the robot is fully restored.
- * @author 
+ * @author
  *
  */
 public class RestoreFullEnergyAction implements Action {
