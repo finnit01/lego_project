@@ -102,16 +102,29 @@ public class NxtBehaviour {
     // start with full energy (1.0);
     EnergyLevel energyLevel = new EnergyLevel(1.0);
 
-    int green = getColourSample(light, "Green Paper");
-    int black = getColourSample(light, "Black Paper");
-    int blue = getColourSample(light, "Blue Paper");
-    int table = getColourSample(light, "Table");
+    LCD.drawString("Wombot",0,0);
+    LCD.drawString("SE1220",0,1);
+    LCD.drawString("Lego Project",0,2);
+    LCD.drawString("Group F",0,3);
+    LCD.drawString("Press to continue",0,5);
+    Button.waitForPress();
+
+    LCD.drawString("Place the light",0,0);
+    LCD.drawString("sensor over the",0,1);
+    LCD.drawString("requested zone and",0,2);
+    LCD.drawString("press any button",0,3);
+    LCD.drawString("Press to continue",0,5);
+    Button.waitForPress();
+
+    int green = getColourSample(light, "Green Zone");
+    int black = getColourSample(light, "Black Zone");
+    int blue = getColourSample(light, "Blue Zone");
+//    int table = getColourSample(light, "Table");
 
     LCD.clear();
     LCD.drawInt(green, 0, 0);
     LCD.drawInt(black, 0, 1);
     LCD.drawInt(blue, 0, 2);
-    LCD.drawInt(table, 0, 3);
 
     Action restoreEnergyAndBeep = new CombinedAction(
         new RestoreFullEnergyAction(energyLevel), new BeepAction());
