@@ -21,7 +21,7 @@ public class AvoidObstaclesBehavior implements Behavior {
   }
 
   public void suppress() {
-    // nothing to suppress
+    pilot.stop();
   }
 
   public void action() {
