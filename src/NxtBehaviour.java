@@ -105,13 +105,11 @@ public class NxtBehaviour {
     int green = getColourSample(light, "Green Paper");
     int yellow = getColourSample(light, "Yellow Paper");
     int red = getColourSample(light, "Red Paper");
-    int table = getColourSample(light, "Table");
 
     LCD.clear();
     LCD.drawInt(green, 0, 0);
     LCD.drawInt(yellow, 0, 1);
     LCD.drawInt(red, 0, 2);
-    LCD.drawInt(table, 0, 3);
 
     Action restoreEnergyAndBeep = new CombinedAction(
         new RestoreFullEnergyAction(energyLevel), new BeepAction());
