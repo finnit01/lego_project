@@ -1,4 +1,5 @@
 import lejos.nxt.SoundSensor;
+import lejos.nxt.TouchSensor;
 
 /**
  * Performs the required calls when the robot's sleep action is needed or
@@ -16,6 +17,7 @@ public class SleepAction implements Action {
    * Reference to the sound sensor being used to detect noise over.
    */
   private SoundSensor sound;
+  private TouchSensor touch;
 
   /**
    * Sets the instance variables to those given as parameters.
@@ -23,8 +25,9 @@ public class SleepAction implements Action {
    * @param sound
    *          The sound sensor being used.
    */
-  public SleepAction(SoundSensor sound) {
+  public SleepAction(SoundSensor sound, TouchSensor touch) {
     this.sound = sound;
+    this.touch = touch;
   }
 
   /**
@@ -32,7 +35,7 @@ public class SleepAction implements Action {
    */
   public void action() {
     // sleeping, do nothing but wait for a clap
-    while (sound.readValue() < SOUND_THRESHOLD) {
+    while (sound.readValue() < SOUND_THRESHOLD && !touch.isPressed()) {
     }
   }
 
