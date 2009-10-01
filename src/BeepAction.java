@@ -1,21 +1,22 @@
-//import lejos.nxt.Sound;
+import lejos.nxt.Sound;
 
 /**
- * Handles the robot's actions for the "Beep Action".
+ * Action for a single beep.
  *
- * @author
+ * @author Trevor Finnie
+ * @version 1 October 2009
  */
 public class BeepAction implements Action {
 
   /**
-   * Make the robot beep.
+   * Beep once.
    */
   public void action() {
-    lejos.nxt.Sound.beep();
+    Sound.beep();
   }
 
   /**
-   * Do nothing more when the beep action is not needed.
+   * Nothing to suppress.
    */
   public void suppress() {
     // nothing to do

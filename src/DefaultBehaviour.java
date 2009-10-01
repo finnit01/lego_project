@@ -1,51 +1,57 @@
 import lejos.subsumption.Behavior;
 
 /**
- * Handles the defaulted behaviour of the robot when
- * no other behaviour is required.
- * @author
+ * Handles the defaulted behaviour of the robot when no other behaviour is
+ * required.
+ *
+ * @author Trevor Finnie
+ * @version 1 October 2009
  *
  */
 public class DefaultBehaviour implements Behavior {
 
-	/**
-	 * The action to take place during the defaulted behaviour.
-	 */
-    Action action;
+  /**
+   * The action to take place during the defaulted behaviour.
+   */
+  private Action action;
 
-    /**
-     * Create a DefaultBehaviour object with an action associated with the
-     * defaulted behaviour.
-     * @param action The default action to be performed.
-     */
-    public DefaultBehaviour(Action action) {
-        if (action==null) throw new NullPointerException("action cannot be null.");
-
-        this.action = action;
+  /**
+   * Create a DefaultBehaviour object with an action associated with the
+   * defaulted behaviour.
+   *
+   * @param action
+   *          The default action to be performed.
+   */
+  public DefaultBehaviour(Action action) {
+    if (action == null) {
+      throw new NullPointerException("action cannot be null.");
     }
 
-    /**
-     * Allows the defaulted behaviour to always be running,
-     * and to only take control when no other behaviours are
-     * being used.
-     * @return True regardless
-     */
-    public boolean takeControl() {
-        return true;
-    }
+    this.action = action;
+  }
 
-    /**
-     * The actions required when this behaviour is suppressed.
-     */
-    public void suppress() {
-        action.suppress();
-    }
+  /**
+   * Allows the defaulted behaviour to always be running, and to only take
+   * control when no other behaviours are being used.
+   *
+   * @return true
+   */
+  public boolean takeControl() {
+    return true;
+  }
 
-    /**
-     * The actions required when this action is taking place.
-     */
-    public void action() {
-        action.action();
-    }
+  /**
+   * The actions required when this behaviour is suppressed.
+   */
+  public void suppress() {
+    action.suppress();
+  }
+
+  /**
+   * The actions required when this action is taking place.
+   */
+  public void action() {
+    action.action();
+  }
 
 }

@@ -1,15 +1,15 @@
 import lejos.nxt.LCD;
-//import lejos.subsumption.Behavior;
 import lejos.navigation.TachoPilot;
-import javax.microedition.lcdui.Graphics;
 
 /**
  * Handles the actions required for the robot to drive forward.
- *
- * @author
- *
+ * 
+ * @author Trevor Finnie, Malcolm King
+ * @version 1 October 2009
+ * 
  */
 public class DriveForwardAction implements Action {
+
   /**
    * Maximum speed for the robot to move.
    */
@@ -34,7 +34,7 @@ public class DriveForwardAction implements Action {
 
   /**
    * Constructor for the DriveForwardAction object.
-   *
+   * 
    * @param pilot
    *          The TachoPilot object used for the robot.
    * @param energyLevel
@@ -73,7 +73,13 @@ public class DriveForwardAction implements Action {
     isActive = false;
   }
 
+  /**
+   * Listen for a change in the energy level.
+   */
   private class EnergyListener implements EnergyLevelListener {
+    /**
+     * Set the move speed when the energy level changes.
+     */
     public void energyLevelChanged() {
       if (isActive) {
         setMoveSpeed(energyLevel.getEnergyLevel());
@@ -81,20 +87,26 @@ public class DriveForwardAction implements Action {
     }
   }
 
+  /**
+   * Set the move speed of the robot depending on it's current energy.
+   * 
+   * @param energy
+   *          The current energy level
+   */
   private void setMoveSpeed(double energy) {
 
     int speed;
 
     LCD.clear();
     if (energy < 0.2) {
-        WombotLCD.drawNeutral(energy);
-        speed = SLOW_SPEED;
+      WombotLCD.drawNeutral(energy);
+      speed = SLOW_SPEED;
     } else {
-        WombotLCD.drawSmile(energy);
-        speed = MAXIMUM_SPEED;
+      WombotLCD.drawSmile(energy);
+      speed = MAXIMUM_SPEED;
     }
 
-    //drawEnergy();
+    // drawEnergy();
     // LCD.clear();
     // LCD.drawString("Energy: " + energy, 0, 0);
     // LCD.drawString("Speed: " + speed, 0, 1);
@@ -109,11 +121,4 @@ public class DriveForwardAction implements Action {
     }
   }
 
-  private void drawEnergy() {
-    // draw a box for the energy level
-    Graphics g = new Graphics();
-    g.clear();
-    g.drawRect(5, 5, 90, 20);
-    g.fillRect(5, 5, (int) (energyLevel.getEnergyLevel() * 90), 20);
-  }
 }

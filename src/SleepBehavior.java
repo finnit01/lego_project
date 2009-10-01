@@ -3,7 +3,8 @@ import lejos.subsumption.Behavior;
 /**
  * Handles the behaviour required by the robot when it is in sleep mode.
  *
- * @author
+ * @author Malcolm King
+ * @version 1 October 2009
  *
  */
 public class SleepBehavior implements Behavior {

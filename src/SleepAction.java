@@ -7,27 +7,37 @@ import lejos.nxt.Sound;
  * Performs the required calls when the robot's sleep action is needed or
  * suppressed.
  *
- * @author
+ * @author Malcolm King, Cennyd Stott
+ * @version 1 October 2009
  *
  */
 public class SleepAction implements Action {
+
   /**
    * The minimum value from the sound sensor for the robot to respond to.
    */
   private static final int SOUND_THRESHOLD = 40;
+
   /**
-   * Reference to the sound sensor being used to detect noise over.
+   * Sound and touch sensors.
    */
   private SoundSensor sound;
   private TouchSensor touch;
+
+  /**
+   * Pilot object to control the motors.
+   */
   private TachoPilot pilot;
 
   /**
-   * Sets the instance variables to those given as parameters.
+   * Construct a SleepAction.
    *
-   * @param sound The sound sensor being used.
-   * @param touch The touch sensor.
-   * @param pilot The pilot.
+   * @param sound
+   *          The sound sensor being used.
+   * @param touch
+   *          The touch sensor.
+   * @param pilot
+   *          The pilot.
    */
   public SleepAction(SoundSensor sound, TouchSensor touch, TachoPilot pilot) {
     this.sound = sound;

@@ -1,50 +1,52 @@
-//import lejos.nxt.Sound;
-
 /**
- * Handles combining two actions together to allow
- * the robot to act in more diverse ways.
- * @author
+ * Combines two actions together to allow the robot to act in more diverse ways.
+ *
+ * @author Trevor Finnie
+ * @version 1 October 2009
  *
  */
 public class CombinedAction implements Action {
 
   /**
-   * The first action required in the combination.
+   * The actions that are part of the combination.
    */
-    private Action firstAction;
-    /**
-     * The second action required in the combination.
-     */
-    private Action secondAction;
+  private Action firstAction;
+  private Action secondAction;
 
-    /**
-     * Sets the instance variables to the parameters given
-     * in this constructor.
-     * @param firstAction The first action in the combination.
-     * @param secondAction The second action in the combination.
-     */
-    public CombinedAction(Action firstAction, Action secondAction) {
+  /**
+   * Construct a CombinedAction object.
+   *
+   * @param firstAction
+   *          The first action in the combination.
+   * @param secondAction
+   *          The second action in the combination.
+   */
+  public CombinedAction(Action firstAction, Action secondAction) {
 
-        if (firstAction==null) throw new NullPointerException("firstAction cannot be null.");
-        if (secondAction==null) throw new NullPointerException("firstAction cannot be null.");
-
-        this.firstAction = firstAction;
-        this.secondAction = secondAction;
+    if (firstAction == null) {
+      throw new NullPointerException("firstAction cannot be null.");
+    }
+    if (secondAction == null) {
+      throw new NullPointerException("secondAction cannot be null.");
     }
 
-    /**
-     * The combined actions to take place.
-     */
-    public void action() {
-        firstAction.action();
-        secondAction.action();
-    }
+    this.firstAction = firstAction;
+    this.secondAction = secondAction;
+  }
 
-    /**
-     * The combined actions to suppress.
-     */
-    public void suppress() {
-        firstAction.suppress();
-        secondAction.suppress();
-    }
+  /**
+   * Run the first action and then the second action.
+   */
+  public void action() {
+    firstAction.action();
+    secondAction.action();
+  }
+
+  /**
+   * Suppress the first action and then the second action.
+   */
+  public void suppress() {
+    firstAction.suppress();
+    secondAction.suppress();
+  }
 }

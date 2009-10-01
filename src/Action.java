@@ -1,19 +1,17 @@
 /**
- * Holds the interface required for an Action of
- * the robot.
- * @author
+ * Interface for Actions.
+ * @author Trevor Finnie
+ * @version 1 October 2009
  */
  public interface Action {
 
     /**
-     * An action method is needed for a method to implement
-     * an Action interface.
+     * Action to be performed.
      */
     public void action();
 
     /**
-     * A suppress method is needed for a method to implement
-     * an Action method.
+     * Suppresses the action.
      */
     public void suppress();
 }
