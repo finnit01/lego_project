@@ -51,7 +51,7 @@ public class NxtBehaviour {
    */
   static final SensorPort TOUCH_PORT = SensorPort.S2;
 
-  static final int COLOUR_TOLERANCE = 10;
+  static final int COLOUR_TOLERANCE = 5;
 
   /**
    * Displays the current light sensor value on the NXT LCD screen and returns
@@ -105,14 +105,13 @@ public class NxtBehaviour {
     int green = getColourSample(light, "Green Paper");
     int yellow = getColourSample(light, "Yellow Paper");
     int blue = getColourSample(light, "Blue Paper");
-//    int green = 426;
-//    int yellow = 535;
-//    int blue = 385;
+    int table = getColourSample(light, "Table");
 
     LCD.clear();
     LCD.drawInt(green, 0, 0);
     LCD.drawInt(yellow, 0, 1);
     LCD.drawInt(blue, 0, 2);
+    LCD.drawInt(table, 0, 3);
 
     Action restoreEnergyAndBeep = new CombinedAction(
         new RestoreFullEnergyAction(energyLevel), new BeepAction());
