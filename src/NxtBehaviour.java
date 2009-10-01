@@ -149,7 +149,7 @@ public class NxtBehaviour {
         energyLevel);
 
     AvoidObstaclesBehavior avoidObstaclesBehavior = new AvoidObstaclesBehavior(
-        sonic, pilot);
+        sonic, touch, pilot);
 
     DefaultBehaviour defaultBehaviour = new DefaultBehaviour(driveAndLoseEnergy);
 
