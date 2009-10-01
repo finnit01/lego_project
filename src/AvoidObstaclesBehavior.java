@@ -24,7 +24,7 @@ public class AvoidObstaclesBehavior implements Behavior {
   public void action() {
     // reverse from the obstacle and turn around
     pilot.travel(-100);
-    pilot.rotate(-180);
+    pilot.rotate(-135);
   }
 
 }
