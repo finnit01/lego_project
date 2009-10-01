@@ -13,7 +13,7 @@ public class DriveForwardAction implements Action {
   /**
    * Maximum speed for the robot to move.
    */
-  private static final int MAXIMUM_SPEED = 40;
+  private static final int MAXIMUM_SPEED = 100;
   /**
    * Minimum speed for the robot to move.
    */

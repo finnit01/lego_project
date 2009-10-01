@@ -25,7 +25,7 @@ public class DrainEnergyAction implements Action {
     /**
      * The time to wait during each time quanta.
      */
-    private static final int TIMER_INTERVAL_MILLIS = 300;
+    private static final int TIMER_INTERVAL_MILLIS = 600;
     /**
      * The current energy level of the robot.
      */
