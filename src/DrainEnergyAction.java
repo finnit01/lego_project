@@ -12,11 +12,20 @@ public class DrainEnergyAction implements Action {
     /**
      * The amount to decrease the energy level each time quanta.
      */
-    private static final double DECREASE_AMOUNT = 0.05;
+    private static final double DECREASE_AMOUNT_ABOVE_CUTOFF = 0.05;
+    private static final double DECREASE_AMOUNT_BELOW_CUTOFF = 0.01;
+
+
+    /**
+     * Cutoff point for energy level, where to start draining more
+     * slowly
+     */
+    private static final double LOW_ENERGY_CUTOFF = 0.2;
+
     /**
      * The time to wait during each time quanta.
      */
-    private static final int TIMER_INTERVAL_MILLIS = 1000;
+    private static final int TIMER_INTERVAL_MILLIS = 300;
     /**
      * The current energy level of the robot.
      */
@@ -71,7 +80,7 @@ public class DrainEnergyAction implements Action {
     	 */
         public void timedOut() {
             double energy = energyLevel.getEnergyLevel();
-            energy-=DECREASE_AMOUNT;
+            energy-= energy < LOW_ENERGY_CUTOFF ? DECREASE_AMOUNT_BELOW_CUTOFF : DECREASE_AMOUNT_ABOVE_CUTOFF;
             if (energy > 0) {
                 energyLevel.setEnergyLevel(energy);
             }
