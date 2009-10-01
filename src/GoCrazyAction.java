@@ -29,9 +29,9 @@ public class GoCrazyAction implements Action {
      * then do some rotations.
      */
     public void action() {
-        lejos.nxt.Sound.twoBeeps();
-        pilot.rotate(-90);
-        pilot.rotate(180);
+        lejos.nxt.Sound.playTone(8000, 2000);
+        pilot.travel(-360);
+        pilot.rotate((int)(Math.random()*720));
     }
 
     /**
