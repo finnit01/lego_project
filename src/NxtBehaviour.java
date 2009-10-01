@@ -50,7 +50,9 @@ public class NxtBehaviour {
    * Static variable for the touch sensor port.
    */
   static final SensorPort TOUCH_PORT = SensorPort.S2;
-
+  /**
+   * Tolerance for detecting a colour using the light sensor.
+   */
   static final int COLOUR_TOLERANCE = 10;
 
   /**
@@ -103,28 +105,28 @@ public class NxtBehaviour {
     EnergyLevel energyLevel = new EnergyLevel(1.0);
 
     LCD.clear();
-    LCD.drawString("Wombot",0,0);
-    LCD.drawString("SE1220",0,1);
-    LCD.drawString("Lego Project",0,2);
-    LCD.drawString("Group F",0,3);
-    LCD.drawString("Press to",0,5);
-    LCD.drawString("continue...",0,6);
+    LCD.drawString("Wombot", 0, 0);
+    LCD.drawString("SE1220", 0, 1);
+    LCD.drawString("Lego Project", 0, 2);
+    LCD.drawString("Group F", 0, 3);
+    LCD.drawString("Press to", 0, 5);
+    LCD.drawString("continue...", 0, 6);
     Button.waitForPress();
 
     LCD.clear();
-    LCD.drawString("Place the light",0,0);
-    LCD.drawString("sensor over the",0,1);
-    LCD.drawString("requested zone",0,2);
-    LCD.drawString("and press any",0,3);
-    LCD.drawString("button",0,4);
-    LCD.drawString("Press to",0,6);
-    LCD.drawString("continue...",0,7);
+    LCD.drawString("Place the light", 0, 0);
+    LCD.drawString("sensor over the", 0, 1);
+    LCD.drawString("requested zone", 0, 2);
+    LCD.drawString("and press any", 0, 3);
+    LCD.drawString("button", 0, 4);
+    LCD.drawString("Press to", 0, 6);
+    LCD.drawString("continue...", 0, 7);
     Button.waitForPress();
 
     int green = getColourSample(light, "Green Zone");
     int black = getColourSample(light, "Black Zone");
     int blue = getColourSample(light, "Blue Zone");
-//    int table = getColourSample(light, "Table");
+    // int table = getColourSample(light, "Table");
 
     LCD.clear();
     LCD.drawInt(green, 0, 0);

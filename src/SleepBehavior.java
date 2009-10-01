@@ -10,11 +10,11 @@ public class SleepBehavior implements Behavior {
   /**
    * The action to take when this behaviour is needed.
    */
-  Action action;
+  private Action action;
   /**
    * The energy level of the robot.
    */
-  EnergyLevel energyLevel;
+  private EnergyLevel energyLevel;
 
   /**
    * Checks to see valid parameters, and then sets instance variables to them.
@@ -25,9 +25,9 @@ public class SleepBehavior implements Behavior {
    *          The energy level of the robot.
    */
   public SleepBehavior(Action action, EnergyLevel energyLevel) {
-    if (action == null)
+    if (action == null) {
       throw new NullPointerException("action cannot be null.");
-
+    }
     this.energyLevel = energyLevel;
     this.action = action;
   }

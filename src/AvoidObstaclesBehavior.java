@@ -3,6 +3,12 @@ import lejos.nxt.UltrasonicSensor;
 import lejos.navigation.TachoPilot;
 import lejos.nxt.TouchSensor;
 
+/**
+ * Methods to detect and avoid obstacles.
+ * @author Malcolm King
+ * @version 1 October 2009
+ *
+ */
 public class AvoidObstaclesBehavior implements Behavior {
 
   private UltrasonicSensor sonic;

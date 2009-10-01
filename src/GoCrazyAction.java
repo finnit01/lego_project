@@ -19,11 +19,14 @@ public class GoCrazyAction implements Action {
      * Creates the GoCrazyAction object and sets instance
      * variables to the parameters given.
      * @param pilot The TachoPilot object of the robot.
+     * @paramt energy The energy level of the robot.
      */
     public GoCrazyAction(TachoPilot pilot, EnergyLevel energy) {
-        if (pilot==null) throw new NullPointerException("pilot cannot be null.");
-        this.pilot=pilot;
-        this.energy=energy;
+        if (pilot == null) {
+          throw new NullPointerException("pilot cannot be null.");
+        }
+        this.pilot = pilot;
+        this.energy = energy;
     }
 
     /**
@@ -46,7 +49,7 @@ public class GoCrazyAction implements Action {
 
     /**
      * When the action is not required, stop any changes
-     * with the TachoPilot object/
+     * with the TachoPilot object.
      */
     public void suppress() {
         pilot.stop();

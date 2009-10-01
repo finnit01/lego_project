@@ -18,7 +18,7 @@ public class DrainEnergyAction implements Action {
 
     /**
      * Cutoff point for energy level, where to start draining more
-     * slowly
+     * slowly.
      */
     private static final double LOW_ENERGY_CUTOFF = 0.2;
 
@@ -43,7 +43,9 @@ public class DrainEnergyAction implements Action {
      */
     public DrainEnergyAction(EnergyLevel energyLevel) {
 
-        if (energyLevel==null) throw new NullPointerException("energyLevel cannot be null.");
+        if (energyLevel == null) {
+          throw new NullPointerException("energyLevel cannot be null.");
+        }
 
         this.energyLevel = energyLevel;
 
@@ -80,11 +82,10 @@ public class DrainEnergyAction implements Action {
     	 */
         public void timedOut() {
             double energy = energyLevel.getEnergyLevel();
-            energy-= energy < LOW_ENERGY_CUTOFF ? DECREASE_AMOUNT_BELOW_CUTOFF : DECREASE_AMOUNT_ABOVE_CUTOFF;
+            energy -= energy < LOW_ENERGY_CUTOFF ? DECREASE_AMOUNT_BELOW_CUTOFF : DECREASE_AMOUNT_ABOVE_CUTOFF;
             if (energy > 0) {
                 energyLevel.setEnergyLevel(energy);
-            }
-            else {
+            } else {
                 energyLevel.setEnergyLevel(0);
             }
         }

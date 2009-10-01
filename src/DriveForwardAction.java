@@ -42,10 +42,12 @@ public class DriveForwardAction implements Action {
    */
   public DriveForwardAction(TachoPilot pilot, EnergyLevel energyLevel) {
 
-    if (pilot == null)
+    if (pilot == null) {
       throw new NullPointerException("pilot cannot be null.");
-    if (energyLevel == null)
+    }
+    if (energyLevel == null) {
       throw new NullPointerException("energyLevel cannot be null.");
+    }
 
     this.pilot = pilot;
     this.energyLevel = energyLevel;
@@ -87,8 +89,7 @@ public class DriveForwardAction implements Action {
     if (energy < 0.2) {
         WombotLCD.drawNeutral(energy);
         speed = SLOW_SPEED;
-    }
-    else {
+    } else {
         WombotLCD.drawSmile(energy);
         speed = MAXIMUM_SPEED;
     }

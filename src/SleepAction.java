@@ -25,8 +25,9 @@ public class SleepAction implements Action {
   /**
    * Sets the instance variables to those given as parameters.
    *
-   * @param sound
-   *          The sound sensor being used.
+   * @param sound The sound sensor being used.
+   * @param touch The touch sensor.
+   * @param pilot The pilot.
    */
   public SleepAction(SoundSensor sound, TouchSensor touch, TachoPilot pilot) {
     this.sound = sound;
@@ -43,6 +44,7 @@ public class SleepAction implements Action {
     lullaby();
     // sleeping, do nothing but wait for a clap
     while (sound.readValue() < SOUND_THRESHOLD && !touch.isPressed()) {
+      // wait for sound or touch
     }
   }
 
@@ -53,6 +55,9 @@ public class SleepAction implements Action {
     // do nothing
   }
 
+  /**
+   * Play a lullaby tune.
+   */
   private void lullaby() {
     short[] note = { 988, 1090, 0, 0, 1175, 545, 0, 0, 880, 1090, 0, 0, 784,
         273, 0, 0, 880, 273, 0, 0, 988, 1090, 0, 0, 1175, 545, 0, 0, 880, 1090,
@@ -68,6 +73,7 @@ public class SleepAction implements Action {
       try {
         Thread.sleep(w);
       } catch (InterruptedException e) {
+        // do nothing
       }
     }
   }

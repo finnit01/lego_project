@@ -21,7 +21,7 @@ public class EnergyLevel {
     /**
      * Constructs the EnergyLevel object and assigns
      * instance variables to the parameters.
-     * @param initialEnergyLevel
+     * @param initialEnergyLevel The energy level at start time.
      */
     public EnergyLevel(double initialEnergyLevel) {
         energy = initialEnergyLevel;
@@ -41,7 +41,7 @@ public class EnergyLevel {
      * @param newEnergyLevel The new energy level of the robot.
      */
     public void setEnergyLevel(double newEnergyLevel) {
-        if (newEnergyLevel!= energy) {
+        if (newEnergyLevel != energy) {
             energy = newEnergyLevel;
             for (EnergyLevelListener l : listeners) {
                 l.energyLevelChanged();

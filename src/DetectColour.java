@@ -1,9 +1,4 @@
 import lejos.subsumption.Behavior;
-//import lejos.nxt.SensorPort;
-//import lejos.nxt.SoundSensor;
-//import lejos.nxt.TouchSensor;
-//import lejos.navigation.TachoPilot;
-//import lejos.nxt.Sound;
 import lejos.nxt.LightSensor;
 
 /**
@@ -92,7 +87,7 @@ public class DetectColour implements Behavior {
      * Instructs robot what to do when this behaviour is suppressed.
      */
     public void suppress() {
-        if (suppressAction!=null) {
+        if (suppressAction != null) {
             suppressAction.suppress();
             suppressAction = null;
         }
@@ -103,11 +98,10 @@ public class DetectColour implements Behavior {
      */
     public void action() {
         onColour = !onColour; // we either moved onto colour, or off of colour so update state appropriately
-        if (onColour && onColourAction!=null) {
+        if (onColour && onColourAction != null) {
             onColourAction.action();
             suppressAction = onColourAction;
-        }
-        else if (!onColour && offColourAction!=null) {
+        } else if (!onColour && offColourAction != null) {
             offColourAction.action();
             suppressAction = offColourAction;
         }
