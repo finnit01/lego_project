@@ -39,9 +39,9 @@ public class WombotLCD
         g.drawString("0",2,23,false);
         g.drawString("100",81,23,false);
         g.drawString("ENERGY",35,23,false);
-        for(int i = 5; i < 10; i++){
+        for(int i = 5; i < 11; i++){
             //g.drawLine(9,i,(int)(10.00+0.08*energy),i);
-            g.drawLine(9,i,(int)(10.00+1*energy),i);
+            g.drawLine(9,i,(int)(10.00+(85-7)*energy),i);
         }
     }
 
