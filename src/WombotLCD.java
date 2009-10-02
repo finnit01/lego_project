@@ -14,6 +14,12 @@ public class WombotLCD {
   private static Graphics g = new Graphics();
 
   /**
+   * Private constructor since this class should not be instantiated.
+   */
+  private WombotLCD() {
+  }
+
+  /**
    * Draw the energy meter and current energy level.
    *
    * @param energy

@@ -1,6 +1,6 @@
 /**
  * Handles the action involved with losing energy.
- * 
+ *
  * @author Trevor Finnie
  * @version 1 October 2009
  */
@@ -14,7 +14,7 @@ public class LoseEnergyAction implements Action {
   /**
    * Constructor for the LoseEnergyAction. Sets instance variables to
    * parameters.
-   * 
+   *
    * @param energy
    *          The energy level of the robot.
    */

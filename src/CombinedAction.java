@@ -8,9 +8,13 @@
 public class CombinedAction implements Action {
 
   /**
-   * The actions that are part of the combination.
+   * The first action to perform as part of the combined action.
    */
   private Action firstAction;
+
+  /**
+   * The second action to perform as part of the combined action.
+   */
   private Action secondAction;
 
   /**

@@ -19,9 +19,13 @@ import lejos.nxt.LCD;
 public class NxtBehaviour {
 
   /**
-   * Motor ports.
+   * Motor port for left motor.
    */
   static final Motor LEFT_MOTOR = Motor.A;
+
+  /**
+   * Motor port for right motor.
+   */
   static final Motor RIGHT_MOTOR = Motor.C;
 
   /**
@@ -35,17 +39,35 @@ public class NxtBehaviour {
   static final int TRACK_DISTANCE = 119;
 
   /**
-   * Sensor ports.
+   * Sensor port for sonic sensor.
    */
   static final SensorPort SONIC_PORT = SensorPort.S3;
+
+  /**
+   * Sensor port for light sensor.
+   */
   static final SensorPort LIGHT_PORT = SensorPort.S2;
+
+  /**
+   * Sensor port for sound sensor.
+   */
   static final SensorPort SOUND_PORT = SensorPort.S4;
+
+  /**
+   * Sensor port for touch sensor.
+   */
   static final SensorPort TOUCH_PORT = SensorPort.S1;
 
   /**
    * Tolerance for detecting a colour using the light sensor.
    */
   static final int COLOUR_TOLERANCE = 10;
+
+  /**
+   * Private constructor since this class should not be instantiated.
+   */
+  private NxtBehaviour() {
+  }
 
   /**
    * Displays the current light sensor value on the NXT LCD screen and returns
@@ -163,7 +185,8 @@ public class NxtBehaviour {
     AvoidObstaclesBehavior avoidObstaclesBehavior = new AvoidObstaclesBehavior(
         sonic, touch, pilot);
 
-    DefaultBehaviour defaultBehaviour = new DefaultBehaviour(driveAndLoseEnergy);
+    DefaultBehaviour defaultBehaviour = new
+        DefaultBehaviour(driveAndLoseEnergy);
 
     // setup, start the Arbitrator
     Behavior[] behaviours = { defaultBehaviour, detectGreen, detectBlack,

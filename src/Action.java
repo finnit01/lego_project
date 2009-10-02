@@ -8,10 +8,10 @@
     /**
      * Action to be performed.
      */
-    public void action();
+    void action();
 
     /**
      * Suppresses the action.
      */
-    public void suppress();
+    void suppress();
 }

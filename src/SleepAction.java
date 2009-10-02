@@ -19,9 +19,13 @@ public class SleepAction implements Action {
   private static final int SOUND_THRESHOLD = 40;
 
   /**
-   * Sound and touch sensors.
+   * Sound sensor.
    */
   private SoundSensor sound;
+
+  /**
+   * Touch sensor.
+   */
   private TouchSensor touch;
 
   /**

@@ -3,10 +3,10 @@ import lejos.navigation.TachoPilot;
 
 /**
  * Handles the actions required for the robot to drive forward.
- * 
+ *
  * @author Trevor Finnie, Malcolm King
  * @version 1 October 2009
- * 
+ *
  */
 public class DriveForwardAction implements Action {
 
@@ -34,7 +34,7 @@ public class DriveForwardAction implements Action {
 
   /**
    * Constructor for the DriveForwardAction object.
-   * 
+   *
    * @param pilot
    *          The TachoPilot object used for the robot.
    * @param energyLevel
@@ -89,7 +89,7 @@ public class DriveForwardAction implements Action {
 
   /**
    * Set the move speed of the robot depending on it's current energy.
-   * 
+   *
    * @param energy
    *          The current energy level
    */

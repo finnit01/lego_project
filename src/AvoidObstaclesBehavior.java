@@ -13,11 +13,19 @@ import lejos.nxt.TouchSensor;
 public class AvoidObstaclesBehavior implements Behavior {
 
   /**
-   * Sensors for the robot.
+   * ultrasonic sensor.
    */
   private UltrasonicSensor sonic;
-  private TachoPilot pilot;
+
+  /**
+   * touch sensor.
+   */
   private TouchSensor touch;
+
+  /**
+   * pilot class for accurate movement.
+   */
+  private TachoPilot pilot;
 
   /**
    * Distance from an obstacle before the avoid behaviour takes control.

@@ -4,16 +4,22 @@ import lejos.util.TimerListener;
 /**
  * Handles the actions that is required for when the energy of the robot is
  * being drained.
- * 
+ *
  * @author Trevor Finnie
  * @version 1 October 2009
  */
 public class DrainEnergyAction implements Action {
 
   /**
-   * The amount to decrease the energy level each time quanta.
+   * The amount to decrease the energy level each time quanta when above the
+   * low energy cutoff.
    */
   private static final double DECREASE_AMOUNT_ABOVE_CUTOFF = 0.05;
+
+  /**
+   * The amount to decrease the energy level each time quanta when below the
+   * low energy cutoff.
+   */
   private static final double DECREASE_AMOUNT_BELOW_CUTOFF = 0.01;
 
   /**
@@ -37,7 +43,7 @@ public class DrainEnergyAction implements Action {
   /**
    * Creates the DrainEnergy object and sets instance variables to those given
    * in the parameters.
-   * 
+   *
    * @param energyLevel
    *          The energy level of the robot.
    */
@@ -69,9 +75,9 @@ public class DrainEnergyAction implements Action {
 
   /**
    * Implements the decrement of energy over each time quanta.
-   * 
+   *
    * @author
-   * 
+   *
    */
   private class DecreaseEnergy implements TimerListener {
 
@@ -79,10 +85,18 @@ public class DrainEnergyAction implements Action {
      * Performs these actions each time quanta.
      */
     public void timedOut() {
+
       double energy = energyLevel.getEnergyLevel();
-      double decreaseAmount = energy < LOW_ENERGY_CUTOFF ? DECREASE_AMOUNT_BELOW_CUTOFF
-          : DECREASE_AMOUNT_ABOVE_CUTOFF;
+
+      double decreaseAmount;
+      if (energy < LOW_ENERGY_CUTOFF) {
+        decreaseAmount = DECREASE_AMOUNT_BELOW_CUTOFF;
+      } else {
+        decreaseAmount = DECREASE_AMOUNT_ABOVE_CUTOFF;
+      }
+
       energy -= decreaseAmount;
+
       if (energy > 0) {
         energyLevel.setEnergyLevel(energy);
       } else {
